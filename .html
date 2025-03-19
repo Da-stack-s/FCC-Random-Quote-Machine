@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Quote Machine</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+        #quote-box {
+            text-align: center;
+            padding: 20px;
+            border: 1px solid #ccc;
+            background-color: #fff;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+        }
+        #new-quote {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        #new-quote:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="quote-box">
+        
+        <p id="text">Click the button to see a quote!</p>
+        <p id="author"></p> <!-- Added author element -->
+        <button id="new-quote">New Quote</button>
+        <a id="tweet-quote" target="_blank">Tweet Quote</a>
+
+    </div>
+    
+    <script>
+        const quotes = [
+            { quote: "The best way to predict the future is to invent it.", author: "Alan Kay" },
+            { quote: "Life is 10% what happens to us and 90% how we react to it.", author: "Charles R. Swindoll" },
+            { quote: "Your time is limited, don't waste it living someone else's life.", author: "Steve Jobs" },
+            { quote: "The only way to do great work is to love what you do.", author: "Steve Jobs" },
+            { quote: "Don't watch the clock; do what it does. Keep going.", author: "Sam Levenson" }
+        ];
+
+        document.getElementById('new-quote').addEventListener('click', function() {
+    const randomIndex = Math.floor(Math.random() * quotes.length);
+    const selectedQuote = quotes[randomIndex];
+    document.getElementById('text').innerText = selectedQuote.quote;
+    document.getElementById('author').innerText = "- " + selectedQuote.author;
+
+    const tweetURL = `https://twitter.com/intent/tweet?text=${encodeURIComponent(`"${selectedQuote.quote}" - ${selectedQuote.author}`)}`;
+    document.getElementById('tweet-quote').setAttribute('href', tweetURL);
+});
+    </script>
+    <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+</body>
+</html>
